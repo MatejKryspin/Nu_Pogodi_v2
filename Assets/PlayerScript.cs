@@ -1,0 +1,119 @@
+using UnityEngine;
+
+public class PlayerScript : MonoBehaviour
+{
+
+    public BoxCollider2D hitBox;
+    public Rigidbody2D myRigidbody;
+    public JumpHitbox jump;
+    public GrabZone grab;
+    public float jumpStrength = 2;
+    public float moveSpeed = 4;
+    public float timer = 0;
+    public float interval = 2;
+    public float relax = 0;
+    public float maxSprint = 4;
+    public bool exhausted;
+    public bool pressed;
+    
+
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        float move = Input.GetAxisRaw("Horizontal"); //changes player model looking in direction where user is moving
+
+        if (move > 0)
+        {
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), Mathf.Abs(transform.localScale.x), 1);
+        }
+        else if (move < 0)
+        {
+            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), Mathf.Abs(transform.localScale.x), 1);
+        }
+
+        //input system
+        if (Input.GetKey(KeyCode.D) == true)
+        {
+            transform.position += Vector3.right * moveSpeed * Time.deltaTime;
+        }
+
+        if (Input.GetKey(KeyCode.A) == true)
+        {
+            transform.position += Vector3.left * moveSpeed * Time.deltaTime;
+        }
+
+        //pressed: resets relax, relax is when you are exhausted when its resets, timer is for how long you can sprint
+        if (Input.GetKey(KeyCode.LeftShift) == true && exhausted == false)
+        {
+            pressed = true;
+            relax = 0;
+            moveSpeed = 6;
+            timer += 1 * Time.deltaTime * interval;
+
+            if (timer > maxSprint)
+            {
+                exhausted = true;
+            }
+        }
+        else if (exhausted == false)
+        {
+            moveSpeed = 4;
+        }
+        else if (exhausted == true) //not sprinting but you are exhausted you need to wait some time to sprint again
+        {
+            relax = 0;
+            moveSpeed = 3;
+            timer -= 2 * Time.deltaTime;
+            if (timer <= 0)
+            {
+                exhausted = false;
+                timer = 0;
+            }
+
+        }
+
+        //when you sprinted you start relaxing and when you are relaxed your sprint starts refuling
+        if (Input.GetKey(KeyCode.LeftShift) == false && exhausted == false && pressed == true) 
+        {
+            relax += 1 * Time.deltaTime;
+            if (relax >= 1.5)
+            {
+                timer -= 2 * Time.deltaTime;
+            }
+            if (timer < 0)
+            {
+                pressed = false;
+                timer = 0;
+                relax = 0;
+            }
+        }
+
+        //jump but only when you are standing on the ground
+        if (Input.GetKeyDown(KeyCode.Space) == true)
+        {
+            if (jump.Grounded() == true)
+            {
+                myRigidbody.linearVelocity = Vector2.up * jumpStrength;
+            }
+        }
+
+        
+
+
+
+
+
+
+
+
+
+
+    }
+}
