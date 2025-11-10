@@ -4,7 +4,7 @@ public class PackScript : MonoBehaviour
 {
 
     public bool Grabed = false;
-
+    public LogicScript logic;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -22,6 +22,7 @@ public class PackScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Egg"))
         {
             Grabed = true;
+            logic.addScore();
         }
     }
 
