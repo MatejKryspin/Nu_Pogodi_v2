@@ -1,3 +1,4 @@
+using System.Reflection.Emit;
 using UnityEngine;
 
 public class PackScript : MonoBehaviour
@@ -5,6 +6,7 @@ public class PackScript : MonoBehaviour
 
     public bool Grabed = false;
     public LogicScript logic;
+    public int packSize;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -21,8 +23,8 @@ public class PackScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Egg"))
         {
-            Grabed = true;
-            logic.addScore();
+            Grabed = true;      //je to pro eggscript aby vedel kdy ma vymazat objekt
+            logic.AddPoints();   
         }
     }
 
