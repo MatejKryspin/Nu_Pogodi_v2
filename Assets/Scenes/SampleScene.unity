@@ -119,6 +119,50 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &79320522
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 79320524}
+  - component: {fileID: 79320523}
+  m_Layer: 0
+  m_Name: Sellpoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &79320523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 79320522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00961f5388a66254ab0fee8a4aa64d89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &79320524
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 79320522}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.006, y: -0.864, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &127043860
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,7 +195,12 @@ MonoBehaviour:
   ps: {fileID: 1702675784}
   playerScore: 0
   scoreText: {fileID: 152771941}
+  pointsText: {fileID: 367796551}
   maxQuota: 0
+  packSize: 0
+  eggPoints: 0
+  dayN: 0
+  roundTime: 0
 --- !u!4 &127043862
 Transform:
   m_ObjectHideFlags: 0
@@ -965,7 +1014,7 @@ GameObject:
   - component: {fileID: 367796552}
   - component: {fileID: 367796551}
   m_Layer: 5
-  m_Name: PackSize
+  m_Name: Pack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1823,7 +1872,7 @@ MonoBehaviour:
   egg: {fileID: 6069713301363901919, guid: 53aecfc75272ed64ea4e80d801b5e434, type: 3}
   warning: {fileID: 3619626154725721886, guid: b053b0b006587ed4fb7b4570ae8bcbce, type: 3}
   spawnTime: 0
-  maxSpawn: 5.09
+  maxSpawn: 5.54
   index: 0
   spawnPoints:
   - {fileID: 376410160}
@@ -2399,6 +2448,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Grabed: 0
   logic: {fileID: 127043861}
+  packSize: 0
 --- !u!61 &1702675785
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3098,3 +3148,4 @@ SceneRoots:
   - {fileID: 127043862}
   - {fileID: 664085066}
   - {fileID: 297903441}
+  - {fileID: 79320524}

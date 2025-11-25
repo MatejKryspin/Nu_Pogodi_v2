@@ -4,13 +4,14 @@ using UnityEngine;
 public class PackScript : MonoBehaviour
 {
 
-    public bool Grabed = false;
+    
     public LogicScript logic;
-    public int packSize;
+    public int packSize = 10;
+    public int numberOfEggs = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        logic.AddPoints(numberOfEggs, packSize);
     }
 
     // Update is called once per frame
@@ -23,20 +24,28 @@ public class PackScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Egg"))
         {
-            Grabed = true;      //je to pro eggscript aby vedel kdy ma vymazat objekt
-            logic.AddPoints();   
+            if (numberOfEggs >= packSize)
+            {
+                return;
+            }
+            else
+            {
+                numberOfEggs++;
+                logic.AddPoints(numberOfEggs, packSize);
+                Destroy(collision.gameObject);
+            }  
         }
     }
-
-    private void OnTriggerExit2D(Collider2D collision)
+    public void EggSelled()
     {
-        if (collision.gameObject.CompareTag("Egg")){
-            Grabed = false;
+        if (numberOfEggs <= 0)
+        {
+            return;
         }
-    }
-
-    public bool IsGrabed()
-    {
-        return Grabed;
+        else
+        {
+        numberOfEggs--;
+        logic.AddPoints(numberOfEggs, packSize);   
+        }
     }
 }
