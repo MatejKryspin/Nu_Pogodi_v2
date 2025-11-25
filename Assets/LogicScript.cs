@@ -6,14 +6,11 @@ using UnityEngine.UI;
 public class LogicScript : MonoBehaviour
 {
 
-    public PackScript ps;
     public int playerScore;
     public Text scoreText;
     public Text pointsText;
     public int maxQuota = 10; //10 je pro zatim aby priste jsem to mohl zvednout
-    
-    public int packSize;
-    public int eggPoints;
+
 
     public int dayN;
     public Array[] days;

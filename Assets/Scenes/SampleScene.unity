@@ -129,6 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 79320524}
   - component: {fileID: 79320523}
+  - component: {fileID: 79320525}
   m_Layer: 0
   m_Name: Sellpoint
   m_TagString: Untagged
@@ -148,6 +149,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00961f5388a66254ab0fee8a4aa64d89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  logic: {fileID: 127043861}
+  pack: {fileID: 1702675784}
+  timeToSell: 0.7
+  saveTime: 0
+  multyTime: 1
+  isSelling: 0
 --- !u!4 &79320524
 Transform:
   m_ObjectHideFlags: 0
@@ -163,6 +170,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &79320525
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 79320522}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0.0038888454, y: 0.07000148}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 2.2678041, y: 2.6955912}
+  m_EdgeRadius: 0
 --- !u!1 &127043860
 GameObject:
   m_ObjectHideFlags: 0
@@ -192,13 +245,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 928f58ad0a364fd47af470d2c7c1ca5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ps: {fileID: 1702675784}
   playerScore: 0
   scoreText: {fileID: 152771941}
   pointsText: {fileID: 367796551}
-  maxQuota: 0
-  packSize: 0
-  eggPoints: 0
+  maxQuota: 10
   dayN: 0
   roundTime: 0
 --- !u!4 &127043862
@@ -2446,9 +2496,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 034534ca078b166478cd41ecb3ed5aea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Grabed: 0
   logic: {fileID: 127043861}
-  packSize: 0
+  packSize: 10
+  numberOfEggs: 0
 --- !u!61 &1702675785
 BoxCollider2D:
   m_ObjectHideFlags: 0
