@@ -9,6 +9,9 @@ public class LogicScript : MonoBehaviour
     public int playerScore;
     public Text scoreText;
     public Text pointsText;
+    public Text lifeText;
+    public int playerLifes = 3;
+    public int currentLifes;
     public int maxQuota = 10; //10 je pro zatim aby priste jsem to mohl zvednout
 
 
@@ -18,9 +21,9 @@ public class LogicScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
-        
-
+        currentLifes = playerLifes;
+        lifeText.text = $"{currentLifes}/{playerLifes}";
+        scoreText.text = $"{playerScore}/{maxQuota}";
         /*if (dayN == 0)
         {
             maxQuota = 10;  //test
@@ -54,5 +57,17 @@ public class LogicScript : MonoBehaviour
     public void AddPoints(int eggs, int size)
     {
         pointsText.text = $"{eggs}/{size}";
+    }
+    public void LoseLife()
+    {
+        if (currentLifes <= 0)
+        {
+            return;
+        }
+        else
+        {
+            currentLifes--;
+            lifeText.text = $"{currentLifes}/{playerLifes}";
+        }
     }
 }
