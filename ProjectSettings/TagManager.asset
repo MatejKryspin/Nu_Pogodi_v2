@@ -9,6 +9,7 @@ TagManager:
   - Ground
   - Warning
   - Spawner
+  - Logic
   layers:
   - Default
   - TransparentFX

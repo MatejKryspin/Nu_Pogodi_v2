@@ -228,7 +228,7 @@ GameObject:
   - component: {fileID: 127043861}
   m_Layer: 0
   m_Name: Logic
-  m_TagString: Untagged
+  m_TagString: Logic
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -248,6 +248,9 @@ MonoBehaviour:
   playerScore: 0
   scoreText: {fileID: 152771941}
   pointsText: {fileID: 367796551}
+  lifeText: {fileID: 1252847342}
+  playerLifes: 3
+  currentLifes: 0
   maxQuota: 10
   dayN: 0
   roundTime: 0
@@ -3072,6 +3075,10 @@ PrefabInstance:
       propertyPath: pack
       value: 
       objectReference: {fileID: 1702675784}
+    - target: {fileID: 4091811772106226951, guid: 53aecfc75272ed64ea4e80d801b5e434, type: 3}
+      propertyPath: logic
+      value: 
+      objectReference: {fileID: 127043861}
     - target: {fileID: 6069713301363901919, guid: 53aecfc75272ed64ea4e80d801b5e434, type: 3}
       propertyPath: m_Name
       value: Egg

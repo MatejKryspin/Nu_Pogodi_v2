@@ -7,6 +7,7 @@ public class LogicScript : MonoBehaviour
 {
 
     public int playerScore;
+    public SpawnScript spawn;
     public Text scoreText;
     public Text pointsText;
     public Text lifeText;
@@ -15,8 +16,9 @@ public class LogicScript : MonoBehaviour
     public int maxQuota = 10; //10 je pro zatim aby priste jsem to mohl zvednout
 
 
-    public int dayN;
-    public Array[] days;
+    public DaySystem days;
+
+    
     public float roundTime;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -39,6 +41,11 @@ public class LogicScript : MonoBehaviour
         
         //pak to dam do elsu kdyz neni shop nebo stop ale tedka to tady nemam
         //roundTime -= 1 * Time.deltaTime;
+
+        if (playerScore >= maxQuota)
+        {
+            days.CompleteDay();
+        }
 
     }
 
@@ -69,5 +76,16 @@ public class LogicScript : MonoBehaviour
             currentLifes--;
             lifeText.text = $"{currentLifes}/{playerLifes}";
         }
+    }
+
+    public void NewDay()
+    {
+        playerScore = 0; 
+        scoreText.text = $"{playerScore}/{maxQuota}";
+        currentLifes = playerLifes;
+        lifeText.text = $"{currentLifes}/{playerLifes}";
+        spawn.spawnTime = 0;
+        spawn.spawnPicked = false;
+        
     }
 }

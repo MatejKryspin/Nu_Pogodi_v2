@@ -10,7 +10,7 @@ public class SpawnScript : MonoBehaviour
     public GameObject warning;
     public float spawnTime = 0f;
     public float maxSpawn = 5f;
-    private bool spawnPicked = false;
+    public bool spawnPicked = false;
    
     public int index;
     public Transform[] spawnPoints;
