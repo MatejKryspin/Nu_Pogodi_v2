@@ -246,13 +246,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerScore: 0
+  spawn: {fileID: 0}
   scoreText: {fileID: 152771941}
   pointsText: {fileID: 367796551}
   lifeText: {fileID: 1252847342}
   playerLifes: 3
   currentLifes: 0
   maxQuota: 10
-  dayN: 0
+  days: {fileID: 1533427163}
   roundTime: 0
 --- !u!4 &127043862
 Transform:
@@ -1925,7 +1926,8 @@ MonoBehaviour:
   egg: {fileID: 6069713301363901919, guid: 53aecfc75272ed64ea4e80d801b5e434, type: 3}
   warning: {fileID: 3619626154725721886, guid: b053b0b006587ed4fb7b4570ae8bcbce, type: 3}
   spawnTime: 0
-  maxSpawn: 5.54
+  maxSpawn: 5
+  spawnPicked: 0
   index: 0
   spawnPoints:
   - {fileID: 376410160}
@@ -2469,6 +2471,71 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1533427162
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1533427164}
+  - component: {fileID: 1533427163}
+  m_Layer: 0
+  m_Name: DayManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1533427163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1533427162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26d071f1b3a031546acecce1887c1b02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  logic: {fileID: 127043861}
+  spawner: {fileID: 889941434}
+  pack: {fileID: 1702675784}
+  sell: {fileID: 79320523}
+  days:
+  - quota: 10
+    packSize: 5
+    time: 20
+    spawnInterval: 5
+    sellInterval: 1
+  - quota: 12
+    packSize: 5
+    time: 24
+    spawnInterval: 4
+    sellInterval: 0.9
+  - quota: 14
+    packSize: 7
+    time: 26
+    spawnInterval: 3
+    sellInterval: 0.7
+  currentDay: 0
+--- !u!4 &1533427164
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1533427162}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.98341, y: -0.40962, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1702675783
 GameObject:
   m_ObjectHideFlags: 0
@@ -3206,3 +3273,4 @@ SceneRoots:
   - {fileID: 664085066}
   - {fileID: 297903441}
   - {fileID: 79320524}
+  - {fileID: 1533427164}

@@ -7,6 +7,8 @@ public class DayData //data pro kazdy den neboli objekt a jeho atributy
     public int quota; //deni quota
     public int packSize; //velikost sacku
     public int time; //round time
+    public float spawnInterval; //spawn vajec
+    public float sellInterval; //rychlost prodeje
 }
 
 public class DaySystem : MonoBehaviour
@@ -14,7 +16,9 @@ public class DaySystem : MonoBehaviour
 
 
     public LogicScript logic; 
+    public SpawnScript spawner;
     public PackScript pack;
+    public SellScript sell;
     public DayData[] days; //jakoby tabulka kde jeden radek je jeden den s hodnotama z daydata takze jeden radek je "day" s atributama z DayData.
     public int currentDay = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -41,6 +45,9 @@ public class DaySystem : MonoBehaviour
         pack.numberOfEggs = 0; 
         logic.AddPoints(pack.numberOfEggs, pack.packSize);
         logic.NewDay(); 
+        spawner.SetNewMaxSpawnTime(day.spawnInterval);
+        sell.NewMaxSellTime(day.sellInterval);
+        
 
 
     }

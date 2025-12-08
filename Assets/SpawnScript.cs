@@ -66,4 +66,9 @@ public class SpawnScript : MonoBehaviour
         Instantiate(warning, spawnpoint.position, spawnpoint.rotation);
     }
 
+
+    public void SetNewMaxSpawnTime(float newMaxSpawn)
+    {
+        maxSpawn = newMaxSpawn;
+    }
 }

@@ -56,4 +56,9 @@ public class SellScript : MonoBehaviour
         }
     }
 
+    public void NewMaxSellTime(float newSellTime)
+    {
+        multyTime = newSellTime;
+    }
+
 }

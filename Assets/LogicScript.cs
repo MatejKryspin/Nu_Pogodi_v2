@@ -84,8 +84,8 @@ public class LogicScript : MonoBehaviour
         scoreText.text = $"{playerScore}/{maxQuota}";
         currentLifes = playerLifes;
         lifeText.text = $"{currentLifes}/{playerLifes}";
-        spawn.spawnTime = 0;
-        spawn.spawnPicked = false;
+        //spawn.spawnTime = 0;
+        //spawn.spawnPicked = false;
         
     }
 }
