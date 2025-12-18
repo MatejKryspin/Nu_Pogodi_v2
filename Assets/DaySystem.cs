@@ -16,6 +16,7 @@ public class DaySystem : MonoBehaviour
 
 
     public LogicScript logic; 
+    public DayTransition dTrans;
     public SpawnScript spawner;
     public PackScript pack;
     public SellScript sell;
@@ -40,6 +41,7 @@ public class DaySystem : MonoBehaviour
         logic.maxQuota = day.quota; 
         pack.packSize = day.packSize;   //ten den se prenastavil na jeden den z toho listu dnii a tim padem musim prenastavit jednotlive hodnoty ve hre tady
         logic.roundTime = day.time;
+        
 
         //jelikoz vlastne zapinam dalsi hru tak musim taky vyrestartovat score
         pack.numberOfEggs = 0; 
@@ -58,6 +60,7 @@ public class DaySystem : MonoBehaviour
         if (currentDay >= days.Length)
         {
             Debug.Log("Byl dosazen konec hry!");
+            dTrans.EndScreen();
             return;
         }
         

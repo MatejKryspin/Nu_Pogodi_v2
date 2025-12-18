@@ -15,6 +15,7 @@ public class LogicScript : MonoBehaviour
     public int playerLifes = 3;
     public int currentLifes;
     public int maxQuota = 10; //10 je pro zatim aby priste jsem to mohl zvednout
+    public bool dayIsEnding = false;
 
 
     public DaySystem days;
@@ -43,10 +44,11 @@ public class LogicScript : MonoBehaviour
         //pak to dam do elsu kdyz neni shop nebo stop ale tedka to tady nemam
         //roundTime -= 1 * Time.deltaTime;
 
-        if (playerScore >= maxQuota)
+        if (playerScore >= maxQuota && !dayIsEnding)
         {
-            days.CompleteDay();
+            
             dTrans.StartDayTransition();
+            dayIsEnding = true;
 
         }
 
@@ -87,8 +89,7 @@ public class LogicScript : MonoBehaviour
         scoreText.text = $"{playerScore}/{maxQuota}";
         currentLifes = playerLifes;
         lifeText.text = $"{currentLifes}/{playerLifes}";
-        //spawn.spawnTime = 0;
-        //spawn.spawnPicked = false;
         
+        dayIsEnding = false;
     }
 }

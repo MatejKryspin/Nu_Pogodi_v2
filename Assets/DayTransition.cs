@@ -5,7 +5,9 @@ using System.Collections;
 public class DayTransition : MonoBehaviour
 {
     public GameObject dayPanel;
+    public GameObject endScreenPanel;
     public Text countdownText;
+    public Text endScreenText;
 
     public DaySystem daySystem;
     public SpawnScript spawn;
@@ -16,7 +18,7 @@ public class DayTransition : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        endScreenPanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -53,6 +55,15 @@ public class DayTransition : MonoBehaviour
 
         daySystem.CompleteDay();
         spawn.StartSpawning();
+
+    }
+
+    public void EndScreen()
+    {
+        Time.timeScale = 0f;
+        spawn.StopSpawning();
+        player.TeleportToSpawn();
+        endScreenPanel.SetActive(true);
 
     }
 }
