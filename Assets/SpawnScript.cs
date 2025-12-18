@@ -10,6 +10,7 @@ public class SpawnScript : MonoBehaviour
     public GameObject warning;
     public float spawnTime = 0f;
     public float maxSpawn = 5f;
+    public bool canSpawn = true;
     public bool spawnPicked = false;
    
     public int index;
@@ -33,7 +34,31 @@ public class SpawnScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        spawnTime += 1f * Time.deltaTime;
+        if (canSpawn)
+        {
+            spawnTime += 1f * Time.deltaTime;
+            if (spawnTime > 0.5f * maxSpawn && spawnPicked == false)
+            {
+                index = UnityEngine.Random.Range(0, spawnPoints.Length);        //vybere nahodnou pozici pole mezi 0 az delkou pole
+                WarningSpawn(index);
+                spawnPicked = true;
+            }
+
+            
+            
+            if (spawnTime > maxSpawn)
+            {
+                EggSpawn(index);
+                spawnTime = 0f;
+                spawnPicked = false;
+                
+            }
+        }
+        else
+        {
+            spawnTime = 0f;
+            spawnPicked = false;
+        }
         if (spawnTime > 0.5f * maxSpawn && spawnPicked == false)
         {
             index = UnityEngine.Random.Range(0, spawnPoints.Length);        //vybere nahodnou pozici pole mezi 0 az delkou pole
@@ -70,5 +95,14 @@ public class SpawnScript : MonoBehaviour
     public void SetNewMaxSpawnTime(float newMaxSpawn)
     {
         maxSpawn = newMaxSpawn;
+    }
+
+    public void StopSpawning()
+    {
+        canSpawn = false;
+    }
+    public void StartSpawning()
+    {
+        canSpawn = true;
     }
 }

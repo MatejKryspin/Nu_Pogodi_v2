@@ -8,6 +8,8 @@ public class DayTransition : MonoBehaviour
     public Text countdownText;
 
     public DaySystem daySystem;
+    public SpawnScript spawn;
+    public PlayerScript player;
 
 
 
@@ -32,6 +34,8 @@ public class DayTransition : MonoBehaviour
     IEnumerator DayTransitionCycle()
     {
         Time.timeScale = 0f;
+        spawn.StopSpawning();
+        player.TeleportToSpawn();
         dayPanel.SetActive(true);
 
         countdownText.text = "3";
@@ -48,6 +52,7 @@ public class DayTransition : MonoBehaviour
         Time.timeScale = 1f;
 
         daySystem.CompleteDay();
+        spawn.StartSpawning();
 
     }
 }

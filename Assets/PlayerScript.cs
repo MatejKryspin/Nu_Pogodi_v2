@@ -15,13 +15,15 @@ public class PlayerScript : MonoBehaviour
     public float maxSprint = 4;
     public bool exhausted;
     public bool pressed;
+
+    public Vector3 spawnPosition;
     
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        spawnPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -115,5 +117,11 @@ public class PlayerScript : MonoBehaviour
 
 
 
+    }
+
+
+    public void TeleportToSpawn()
+    {
+        transform.position = spawnPosition;
     }
 }
