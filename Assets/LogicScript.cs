@@ -8,6 +8,7 @@ public class LogicScript : MonoBehaviour
 
     public int playerScore;
     public SpawnScript spawn;
+    public DayTransition dTrans;
     public Text scoreText;
     public Text pointsText;
     public Text lifeText;
@@ -45,6 +46,8 @@ public class LogicScript : MonoBehaviour
         if (playerScore >= maxQuota)
         {
             days.CompleteDay();
+            dTrans.StartDayTransition();
+
         }
 
     }
