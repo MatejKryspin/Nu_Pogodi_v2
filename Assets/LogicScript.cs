@@ -1,8 +1,12 @@
 using System;
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement; 
+ 
+
 public class LogicScript : MonoBehaviour
 {
 
@@ -20,6 +24,8 @@ public class LogicScript : MonoBehaviour
 
     public DaySystem days;
 
+    public GameObject UI;
+
     
     public float roundTime;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -28,6 +34,7 @@ public class LogicScript : MonoBehaviour
         currentLifes = playerLifes;
         lifeText.text = $"{currentLifes}/{playerLifes}";
         scoreText.text = $"{playerScore}/{maxQuota}";
+        UI.SetActive(true);
         /*if (dayN == 0)
         {
             maxQuota = 10;  //test
@@ -91,5 +98,12 @@ public class LogicScript : MonoBehaviour
         lifeText.text = $"{currentLifes}/{playerLifes}";
         
         dayIsEnding = false;
+    }
+
+    public void restartGame()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
     }
 }
