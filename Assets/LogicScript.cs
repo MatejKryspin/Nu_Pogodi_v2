@@ -15,9 +15,8 @@ public class LogicScript : MonoBehaviour
     public DayTransition dTrans;
     public Text scoreText;
     public Text pointsText;
-    public Text lifeText;
-    public int playerLifes = 3;
-    public int currentLifes;
+    public Text moneyText;
+    public int playerMoney = 0;
     public int maxQuota = 10; //10 je pro zatim aby priste jsem to mohl zvednout
     public bool dayIsEnding = false;
 
@@ -31,16 +30,10 @@ public class LogicScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        currentLifes = playerLifes;
-        lifeText.text = $"{currentLifes}/{playerLifes}";
+        moneyText.text = $"{playerMoney}";
         scoreText.text = $"{playerScore}/{maxQuota}";
         UI.SetActive(true);
-        /*if (dayN == 0)
-        {
-            maxQuota = 10;  //test
-            packSize = 10;
-            roundTime = 20;
-        }*/
+        
     }
 
     // Update is called once per frame
@@ -73,29 +66,30 @@ public class LogicScript : MonoBehaviour
             scoreText.text = $"{playerScore}/{maxQuota}"; 
         }
     }
-    public void AddPoints(int eggs, int size)
+    public void  AddPoints(int eggs)
     {
-        pointsText.text = $"{eggs}/{size}";
+        pointsText.text = $"{eggs}";
     }
-    public void LoseLife()
+    public void LoseMoneyOnDrop()
     {
-        if (currentLifes <= 0)
+        playerMoney -= 5;
+        if (playerMoney < 0)
         {
-            return;
+            playerMoney = 0;
         }
-        else
-        {
-            currentLifes--;
-            lifeText.text = $"{currentLifes}/{playerLifes}";
-        }
+        moneyText.text = $"{playerMoney}";
+    }
+
+    public void AddMoneyOnPickup()
+    {
+        playerMoney += 3;
+        moneyText.text = $"{playerMoney}";
     }
 
     public void NewDay()
     {
         playerScore = 0; 
         scoreText.text = $"{playerScore}/{maxQuota}";
-        currentLifes = playerLifes;
-        lifeText.text = $"{currentLifes}/{playerLifes}";
         
         dayIsEnding = false;
     }

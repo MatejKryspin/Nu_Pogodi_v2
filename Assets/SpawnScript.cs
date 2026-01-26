@@ -9,7 +9,7 @@ public class SpawnScript : MonoBehaviour
     public GameObject egg;
     public GameObject warning;
     public float spawnTime = 0f;
-    public float maxSpawn = 5f;
+    public float maxSpawn = 2.5f;
     public bool canSpawn = true;
     public bool spawnPicked = false;
    

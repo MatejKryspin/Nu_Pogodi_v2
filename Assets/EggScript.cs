@@ -21,7 +21,7 @@ public class EggScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            logic.LoseLife();
+            logic.LoseMoneyOnDrop();
             Destroy(gameObject);
         }
     }

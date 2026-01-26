@@ -39,13 +39,12 @@ public class DaySystem : MonoBehaviour
         DayData day = days[dayIndex]; //jeden den s atributami z DayData se nastavi na hodnoty vybrane z tabulky days s nejakym indexem
 
         logic.maxQuota = day.quota; 
-        pack.packSize = day.packSize;   //ten den se prenastavil na jeden den z toho listu dnii a tim padem musim prenastavit jednotlive hodnoty ve hre tady
         logic.roundTime = day.time;
         
 
         //jelikoz vlastne zapinam dalsi hru tak musim taky vyrestartovat score
         pack.numberOfEggs = 0; 
-        logic.AddPoints(pack.numberOfEggs, pack.packSize);
+        logic.AddPoints(pack.numberOfEggs);
         logic.NewDay(); 
         spawner.SetNewMaxSpawnTime(day.spawnInterval);
         sell.NewMaxSellTime(day.sellInterval);
