@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -9,12 +11,14 @@ public class PlayerScript : MonoBehaviour
     public GrabZone grab;
     public float jumpStrength = 2;
     public float moveSpeed = 4;
+    public float baseSpeed;
     public float timer = 0;
     public float interval = 2;
     public float relax = 0;
     public float maxSprint = 4;
     public bool exhausted;
     public bool pressed;
+    public bool reversed;
 
     public Vector3 spawnPosition;
     
@@ -24,6 +28,7 @@ public class PlayerScript : MonoBehaviour
     void Start()
     {
         spawnPosition = transform.position;
+        baseSpeed = moveSpeed;
     }
 
     // Update is called once per frame
@@ -43,12 +48,26 @@ public class PlayerScript : MonoBehaviour
         //input system
         if (Input.GetKey(KeyCode.D) == true)
         {
-            transform.position += Vector3.right * moveSpeed * Time.deltaTime;
+            if (reversed)
+            {
+                transform.position += Vector3.left * moveSpeed * Time.deltaTime;
+            }
+            else
+            {
+                transform.position += Vector3.right * moveSpeed * Time.deltaTime;
+            }
         }
 
         if (Input.GetKey(KeyCode.A) == true)
         {
-            transform.position += Vector3.left * moveSpeed * Time.deltaTime;
+            if (reversed)
+            {
+                transform.position += Vector3.right * moveSpeed * Time.deltaTime;
+            }
+            else
+            {
+                transform.position += Vector3.left * moveSpeed * Time.deltaTime;
+            }
         }
 
         //pressed: resets relax, relax is when you are exhausted when its resets, timer is for how long you can sprint
@@ -105,18 +124,6 @@ public class PlayerScript : MonoBehaviour
                 myRigidbody.linearVelocity = Vector2.up * jumpStrength;
             }
         }
-
-        
-
-
-
-
-
-
-
-
-
-
     }
 
 
@@ -124,4 +131,31 @@ public class PlayerScript : MonoBehaviour
     {
         transform.position = spawnPosition;
     }
+
+    public void StartSpeedEffect(float boostAmount, float duration)
+    {
+        StopAllCoroutines();
+        StartCoroutine(SpeedBoostRoutine(boostAmount, duration));
+    }
+
+    IEnumerator SpeedBoostRoutine(float boostAmount, float duration)
+    {
+        moveSpeed = baseSpeed * boostAmount;
+        yield return new WaitForSeconds(duration);
+        moveSpeed = baseSpeed;
+    }
+
+    public void StartReversedEffect(float duration)
+    {
+        StopAllCoroutines();
+        StartCoroutine(ReversedControlRoutine(duration));
+    }
+
+    IEnumerator ReversedControlRoutine(float duration)
+    {
+        reversed = true;
+        yield return new WaitForSeconds(duration);
+        reversed = false;
+    }
 }
+

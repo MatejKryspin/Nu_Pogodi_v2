@@ -28,6 +28,36 @@ public class PackScript : MonoBehaviour
             logic.AddPoints(numberOfEggs);
             Destroy(collision.gameObject);
         }
+        else if (collision.gameObject.CompareTag("SpeedEgg"))
+        {
+            PlayerScript player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
+            player.StartSpeedEffect(2f, 10f);
+            numberOfEggs++;
+            logic.AddMoneyOnPickup();
+            logic.AddPoints(numberOfEggs);
+
+            Destroy(collision.gameObject);
+        }
+        else if (collision.gameObject.CompareTag("ReversedEgg"))
+        {
+            PlayerScript player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
+            player.StartReversedEffect(10f);
+            numberOfEggs++;
+            logic.AddMoneyOnPickup();
+            logic.AddPoints(numberOfEggs);
+
+            Destroy(collision.gameObject);
+        }
+        else if (collision.gameObject.CompareTag("ConfusedEgg"))
+        {
+            PlayerScript player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
+            //player.StartConfusedEffect();
+            numberOfEggs++;
+            logic.AddMoneyOnPickup();
+            logic.AddPoints(numberOfEggs);
+
+            Destroy(collision.gameObject);
+        }
     }
     public void EggSelled()
     {
@@ -37,4 +67,6 @@ public class PackScript : MonoBehaviour
             logic.AddPoints(numberOfEggs);
         }
     }
+
+    
 }

@@ -1,21 +1,28 @@
 using System;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Random = UnityEngine.Random;
 
 public class SpawnScript : MonoBehaviour
 {
 
     public GameObject egg;
     public GameObject warning;
+    public GameObject[] specialEggs;
+
+
     public float spawnTime = 0f;
     public float maxSpawn = 2.5f;
     public bool canSpawn = true;
     public bool spawnPicked = false;
    
+   
     public int index;
     public Transform[] spawnPoints;
     public Transform[] warningPoints;
+    
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -39,7 +46,7 @@ public class SpawnScript : MonoBehaviour
             spawnTime += 1f * Time.deltaTime;
             if (spawnTime > 0.5f * maxSpawn && spawnPicked == false)
             {
-                index = UnityEngine.Random.Range(0, spawnPoints.Length);        //vybere nahodnou pozici pole mezi 0 az delkou pole
+                index = Random.Range(0, spawnPoints.Length);        //vybere nahodnou pozici pole mezi 0 az delkou pole
                 WarningSpawn(index);
                 spawnPicked = true;
             }
@@ -61,7 +68,7 @@ public class SpawnScript : MonoBehaviour
         }
         if (spawnTime > 0.5f * maxSpawn && spawnPicked == false)
         {
-            index = UnityEngine.Random.Range(0, spawnPoints.Length);        //vybere nahodnou pozici pole mezi 0 az delkou pole
+            index = Random.Range(0, spawnPoints.Length);        //vybere nahodnou pozici pole mezi 0 az delkou pole
             WarningSpawn(index);
             spawnPicked = true;
         }
@@ -83,7 +90,8 @@ public class SpawnScript : MonoBehaviour
     {
         Transform spawnpoint = spawnPoints[index];          //zase: spawnpoint prevezme informace ktere ma spawnPoints[index] a dale je muzeme pouzit
         Debug.Log("Spawning egg at: " + index);
-        Instantiate(egg, spawnpoint.position, spawnpoint.rotation);
+        GameObject eggToSpawn = PickEgg();
+        Instantiate(eggToSpawn, spawnpoint.position, spawnpoint.rotation);
     }
     private void WarningSpawn(int index){
         Transform spawnpoint = spawnPoints[index];          //zase: spawnpoint prevezme informace ktere ma spawnPoints[index] a dale je muzeme pouzit
@@ -104,5 +112,20 @@ public class SpawnScript : MonoBehaviour
     public void StartSpawning()
     {
         canSpawn = true;
+    }
+
+
+
+    GameObject PickEgg()
+    {
+        float roll = Random.Range(0f, 100f); 
+        if (roll < 70f)
+        {
+            return egg;
+        }
+       
+        int index = Random.Range(0, specialEggs.Length);
+        return specialEggs[index];
+        
     }
 }

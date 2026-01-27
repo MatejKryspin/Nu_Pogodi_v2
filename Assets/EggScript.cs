@@ -4,6 +4,7 @@ public class EggScript : MonoBehaviour
 {
 
     public LogicScript logic;
+   
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -25,4 +26,6 @@ public class EggScript : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    
 }
