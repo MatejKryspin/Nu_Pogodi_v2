@@ -51,7 +51,7 @@ public class PackScript : MonoBehaviour
         else if (collision.gameObject.CompareTag("ConfusedEgg"))
         {
             PlayerScript player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
-            //player.StartConfusedEffect();
+            //player.StartConfusedEffect(); to ze se ukaze vykricnik na druhe strane nez se spawnuje vajicko
             numberOfEggs++;
             logic.AddMoneyOnPickup();
             logic.AddPoints(numberOfEggs);
