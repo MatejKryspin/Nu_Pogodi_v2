@@ -51,7 +51,7 @@ public class PackScript : MonoBehaviour
         else if (collision.gameObject.CompareTag("ConfusedEgg"))
         {
             PlayerScript player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
-            //player.StartConfusedEffect(); to ze se ukaze vykricnik na druhe strane nez se spawnuje vajicko
+            //player.StartConfusedEffect(); to ze se ukaze vykricnik na druhe strane nez se spawnuje vajicko asi bych to udelal tak ze seradim spawnpointy vlevo nahore bude 0 v pravo nahore bude 1 atd takze pak az budu spawnovat tak proste if spawnpoint[0] tak spawn warning je spawnpoint[x+1] atd
             numberOfEggs++;
             logic.AddMoneyOnPickup();
             logic.AddPoints(numberOfEggs);
