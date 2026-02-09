@@ -6,6 +6,8 @@ public class PackScript : MonoBehaviour
 
     
     public LogicScript logic;
+    public SpawnScript spawn;
+    public PlayerScript player;
     public int numberOfEggs = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -30,8 +32,8 @@ public class PackScript : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("SpeedEgg"))
         {
-            PlayerScript player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
-            player.StartSpeedEffect(2f, 10f); //boost amount, duration
+            
+            player.StartSpeedEffect(5f, 10f); //boost amount, duration
             numberOfEggs++;
             logic.AddMoneyOnPickup("speed");
             logic.AddPoints(numberOfEggs);
@@ -40,7 +42,7 @@ public class PackScript : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("ReversedEgg"))
         {
-            PlayerScript player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
+            
             player.StartReversedEffect(5f); //duration
             numberOfEggs++;
             logic.AddMoneyOnPickup("reversed");
@@ -50,7 +52,7 @@ public class PackScript : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("ConfusedEgg"))
         {
-            SpawnScript spawn = GameObject.FindGameObjectWithTag("Spawn").GetComponent<SpawnScript>();
+            
             spawn.StartConfusedEffect(5f); //duration
             numberOfEggs++;
             logic.AddMoneyOnPickup("confused");

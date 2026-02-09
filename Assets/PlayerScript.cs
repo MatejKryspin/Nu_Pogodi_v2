@@ -14,7 +14,8 @@ public class PlayerScript : MonoBehaviour
 
 
     public float jumpStrength = 2;
-    public float moveSpeed = 4;
+    public float moveSpeed = 4f;
+    public float sprintSpeed;
     public float baseSpeed;
     public float timer = 0;
     public float interval = 2;
@@ -33,6 +34,7 @@ public class PlayerScript : MonoBehaviour
     {
         spawnPosition = transform.position;
         baseSpeed = moveSpeed;
+        sprintSpeed = baseSpeed + 3f;
     }
 
     // Update is called once per frame
@@ -78,8 +80,8 @@ public class PlayerScript : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift) == true && exhausted == false)
         {
             pressed = true;
+            moveSpeed = sprintSpeed;
             relax = 0;
-            moveSpeed = 6;
             timer += 1 * Time.deltaTime * interval;
 
             if (timer > maxSprint)
@@ -89,12 +91,12 @@ public class PlayerScript : MonoBehaviour
         }
         else if (exhausted == false)
         {
-            moveSpeed = 4;
+            moveSpeed = baseSpeed;
         }
         else if (exhausted == true) //not sprinting but you are exhausted you need to wait some time to sprint again
         {
             relax = 0;
-            moveSpeed = 3;
+            moveSpeed = baseSpeed - 2f;
             timer -= 2 * Time.deltaTime;
             if (timer <= 0)
             {
@@ -158,7 +160,7 @@ public class PlayerScript : MonoBehaviour
 
     IEnumerator SpeedBoostRoutine(float boostAmount, float duration)
     {
-        moveSpeed = baseSpeed * boostAmount;
+        moveSpeed = baseSpeed + boostAmount;
         yield return new WaitForSeconds(duration);
         moveSpeed = baseSpeed;
         speedcoroutine = null;

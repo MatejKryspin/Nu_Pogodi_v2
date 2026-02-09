@@ -32,6 +32,7 @@ public class SpawnScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        /*
         for (int i = 0; i < spawnPoints.Length; i++)
         {
             warningPoints[i] = spawnPoints[i];
@@ -39,7 +40,7 @@ public class SpawnScript : MonoBehaviour
             pos.x += 1f;
             warningPoints[i].position = pos;
         }
-        
+        */
     }
 
     // Update is called once per frame
@@ -53,12 +54,12 @@ public class SpawnScript : MonoBehaviour
                 index = Random.Range(0, spawnPoints.Length);        //vybere nahodnou pozici pole mezi 0 az delkou pole
                 if (confused)
                 {
-                    if (index % 2 > 0)
+                    if ((index + 1) % 2 > 0)
                     {
                         confusedIndex = index + 1;
                         
                     }
-                    else if (index % 2 == 0)
+                    else if ((index + 1) % 2 == 0)
                     {
                         confusedIndex = index - 1;
                         
