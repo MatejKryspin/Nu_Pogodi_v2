@@ -9,6 +9,10 @@ public class PlayerScript : MonoBehaviour
     public Rigidbody2D myRigidbody;
     public JumpHitbox jump;
     public GrabZone grab;
+    public Coroutine speedcoroutine;
+    public Coroutine reversedcoroutine;
+
+
     public float jumpStrength = 2;
     public float moveSpeed = 4;
     public float baseSpeed;
@@ -134,8 +138,22 @@ public class PlayerScript : MonoBehaviour
 
     public void StartSpeedEffect(float boostAmount, float duration)
     {
-        StopAllCoroutines();
-        StartCoroutine(SpeedBoostRoutine(boostAmount, duration));
+        if (speedcoroutine != null)
+        {
+            StopCoroutine(speedcoroutine);
+            speedcoroutine = null;
+        }
+        speedcoroutine = StartCoroutine(SpeedBoostRoutine(boostAmount, duration));
+    }
+
+    public void StartReversedEffect(float duration)
+    {
+        if (reversedcoroutine != null)
+        {
+            StopCoroutine(reversedcoroutine);
+            reversedcoroutine = null;
+        }
+        reversedcoroutine = StartCoroutine(ReversedControlRoutine(duration));
     }
 
     IEnumerator SpeedBoostRoutine(float boostAmount, float duration)
@@ -143,12 +161,7 @@ public class PlayerScript : MonoBehaviour
         moveSpeed = baseSpeed * boostAmount;
         yield return new WaitForSeconds(duration);
         moveSpeed = baseSpeed;
-    }
-
-    public void StartReversedEffect(float duration)
-    {
-        StopAllCoroutines();
-        StartCoroutine(ReversedControlRoutine(duration));
+        speedcoroutine = null;
     }
 
     IEnumerator ReversedControlRoutine(float duration)
@@ -156,6 +169,7 @@ public class PlayerScript : MonoBehaviour
         reversed = true;
         yield return new WaitForSeconds(duration);
         reversed = false;
+        reversedcoroutine = null;
     }
 }
 

@@ -20,6 +20,7 @@ public class SpawnScript : MonoBehaviour
     public bool spawnPicked = false;
     public bool confused = false;
     public int confusedIndex;
+    private Coroutine confusedCoroutine;
    
    
     public int index;
@@ -137,8 +138,13 @@ public class SpawnScript : MonoBehaviour
 
     public void StartConfusedEffect(float duration)
     {
-        StopAllCoroutines();
-        StartCoroutine(ConfusedEffectRoutine(duration));
+        if (confusedCoroutine != null)
+        {
+            StopCoroutine(confusedCoroutine);
+            confusedCoroutine = null;
+        }
+
+        confusedCoroutine = StartCoroutine(ConfusedEffectRoutine(duration));
            
     }
     
@@ -147,6 +153,7 @@ public class SpawnScript : MonoBehaviour
         confused = true;
         yield return new WaitForSeconds(duration);
         confused = false;
+        confusedCoroutine = null;
         
     }
 }
