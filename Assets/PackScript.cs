@@ -24,7 +24,7 @@ public class PackScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Egg"))
         {
             numberOfEggs++;
-            logic.AddMoneyOnPickup();
+            logic.AddMoneyOnPickup("normal");
             logic.AddPoints(numberOfEggs);
             Destroy(collision.gameObject);
         }
@@ -33,7 +33,7 @@ public class PackScript : MonoBehaviour
             PlayerScript player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
             player.StartSpeedEffect(2f, 10f);
             numberOfEggs++;
-            logic.AddMoneyOnPickup();
+            logic.AddMoneyOnPickup("speed");
             logic.AddPoints(numberOfEggs);
 
             Destroy(collision.gameObject);
@@ -43,7 +43,7 @@ public class PackScript : MonoBehaviour
             PlayerScript player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
             player.StartReversedEffect(10f);
             numberOfEggs++;
-            logic.AddMoneyOnPickup();
+            logic.AddMoneyOnPickup("reversed");
             logic.AddPoints(numberOfEggs);
 
             Destroy(collision.gameObject);
@@ -53,7 +53,7 @@ public class PackScript : MonoBehaviour
             PlayerScript player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
             //player.StartConfusedEffect(); to ze se ukaze vykricnik na druhe strane nez se spawnuje vajicko asi bych to udelal tak ze seradim spawnpointy vlevo nahore bude 0 v pravo nahore bude 1 atd takze pak az budu spawnovat tak proste if spawnpoint[0] tak spawn warning je spawnpoint[x+1] atd
             numberOfEggs++;
-            logic.AddMoneyOnPickup();
+            logic.AddMoneyOnPickup("confused");
             logic.AddPoints(numberOfEggs);
 
             Destroy(collision.gameObject);

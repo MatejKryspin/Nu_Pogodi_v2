@@ -80,10 +80,25 @@ public class LogicScript : MonoBehaviour
         moneyText.text = $"{playerMoney}";
     }
 
-    public void AddMoneyOnPickup()
+    public void AddMoneyOnPickup(string type)
     {
-        playerMoney += 3;
-        moneyText.text = $"{playerMoney}";
+        if (type == "normal")
+        {
+            playerMoney += 3;
+        }
+        if (type == "speed")
+        {
+           playerMoney += 1; 
+        }
+        if (type == "reversed")
+        {
+            playerMoney += 10;
+        }
+        if (type == "confused")
+        {
+            playerMoney += 8;
+        }
+        
     }
 
     public void NewDay()

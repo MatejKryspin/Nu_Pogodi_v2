@@ -4,6 +4,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
+using System.Collections;
 
 public class SpawnScript : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class SpawnScript : MonoBehaviour
     public float maxSpawn = 2.5f;
     public bool canSpawn = true;
     public bool spawnPicked = false;
+    public bool confused = false;
+    public int confusedIndex;
    
    
     public int index;
@@ -47,8 +50,26 @@ public class SpawnScript : MonoBehaviour
             if (spawnTime > 0.5f * maxSpawn && spawnPicked == false)
             {
                 index = Random.Range(0, spawnPoints.Length);        //vybere nahodnou pozici pole mezi 0 az delkou pole
-                WarningSpawn(index);
-                spawnPicked = true;
+                if (confused)
+                {
+                    if (index % 2 > 0)
+                    {
+                        confusedIndex = index + 1;
+                        
+                    }
+                    else if (index % 2 == 0)
+                    {
+                        confusedIndex = index - 1;
+                        
+                    }
+                    WarningSpawn(confusedIndex);
+                    spawnPicked = true;
+                }
+                if (!confused)
+                {
+                    WarningSpawn(index);
+                    spawnPicked = true;
+                }
             }
 
             
@@ -66,22 +87,7 @@ public class SpawnScript : MonoBehaviour
             spawnTime = 0f;
             spawnPicked = false;
         }
-        if (spawnTime > 0.5f * maxSpawn && spawnPicked == false)
-        {
-            index = Random.Range(0, spawnPoints.Length);        //vybere nahodnou pozici pole mezi 0 az delkou pole
-            WarningSpawn(index);
-            spawnPicked = true;
-        }
-
         
-        
-        if (spawnTime > maxSpawn)
-        {
-            EggSpawn(index);
-            spawnTime = 0f;
-            spawnPicked = false;
-            
-        }
 
     }
 
@@ -126,6 +132,21 @@ public class SpawnScript : MonoBehaviour
        
         int index = Random.Range(0, specialEggs.Length);
         return specialEggs[index];
+        
+    }
+
+    public void StartConfusedEffect(float duration)
+    {
+        StopAllCoroutines();
+        StartCoroutine(ConfusedEffectRoutine(duration));
+           
+    }
+    
+    IEnumerator ConfusedEffectRoutine(float duration)
+    {
+        confused = true;
+        yield return new WaitForSeconds(duration);
+        confused = false;
         
     }
 }

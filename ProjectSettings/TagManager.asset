@@ -10,6 +10,9 @@ TagManager:
   - Warning
   - Spawner
   - Logic
+  - SpeedEgg
+  - ConfusedEgg
+  - ReversedEgg
   layers:
   - Default
   - TransparentFX

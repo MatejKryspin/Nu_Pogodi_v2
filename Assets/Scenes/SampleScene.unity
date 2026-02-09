@@ -2344,6 +2344,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   egg: {fileID: 6069713301363901919, guid: 53aecfc75272ed64ea4e80d801b5e434, type: 3}
   warning: {fileID: 3619626154725721886, guid: b053b0b006587ed4fb7b4570ae8bcbce, type: 3}
+  specialEggs:
+  - {fileID: 3001797125663898236, guid: bc949298d4ad97b4ea2d2238e232ca6f, type: 3}
+  - {fileID: 102284094289184604, guid: ac6819af6c7063e41a93f4e8ff23cc80, type: 3}
+  - {fileID: 1950168322013362840, guid: 2f509162a19c27141b1c7f5f2025847f, type: 3}
   spawnTime: 0
   maxSpawn: 5
   canSpawn: 1
