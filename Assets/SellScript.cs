@@ -33,7 +33,7 @@ public class SellScript : MonoBehaviour
                 if (timeToSell <= 0)
                 {
                     pack.EggSelled();
-                    
+                    logic.AddMoneyOnSell();
                     logic.AddScore();
                     timeToSell = saveTime;
                 }

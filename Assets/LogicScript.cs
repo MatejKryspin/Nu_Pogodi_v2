@@ -1,11 +1,13 @@
 using System;
 using JetBrains.Annotations;
 using UnityEngine;
+using System.Linq;
 using UnityEngine.Rendering;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement; 
- 
+using UnityEngine.SceneManagement;
+using System.Collections.Generic;
+
 
 public class LogicScript : MonoBehaviour
 {
@@ -24,6 +26,9 @@ public class LogicScript : MonoBehaviour
     public DaySystem days;
 
     public GameObject UI;
+    public List<int> eggValues = new List<int>(); //tady budu uchovavat hodnoty vajec ktere byly sebrany a pak az je prodam tak se z toho arraye bude pricitat k penezum
+    public int pos = 0;
+    //public int sellpos = 0;
 
     
     public float roundTime;
@@ -82,23 +87,46 @@ public class LogicScript : MonoBehaviour
 
     public void AddMoneyOnPickup(string type)
     {
+        if (eggValues.Count == 0)
+        {
+            pos = 0;
+        }
+        else
+        {
+            pos = eggValues.Count - 1;
+        }
         if (type == "normal")
         {
-            playerMoney += 3;
+            //playerMoney += 3;
+            eggValues.Add(3);
+
         }
-        if (type == "speed")
+        else if (type == "speed")
         {
-           playerMoney += 1; 
+           //playerMoney += 1; 
+           eggValues.Add(1);
         }
-        if (type == "reversed")
+        else if (type == "reversed")
         {
-            playerMoney += 10;
+            //playerMoney += 10;
+            eggValues.Add(10);
         }
-        if (type == "confused")
+        else if (type == "confused")
         {
-            playerMoney += 8;
+            //playerMoney += 8;
+            eggValues.Add(8);
         }
+        //moneyText.text = $"{playerMoney}";
+
+        //udelam aby se uchovala hodnota vajec ktere byly sebrany takze udelam array do ktereho budu psat ty ceny tech vajec a pak az je prodam tak se z toho arraye bude pricitat k penezum
         
+    }
+
+    public void AddMoneyOnSell()
+    {
+        playerMoney += eggValues[0];
+        moneyText.text = $"{playerMoney}";
+        eggValues.RemoveAt(0); //odstrani prvni prvek z pole a posune vsechny ostatni o jednu pozici dopredu
     }
 
     public void NewDay()
