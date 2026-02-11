@@ -24,6 +24,7 @@ public class PlayerScript : MonoBehaviour
     public bool exhausted;
     public bool pressed;
     public bool reversed;
+    public float restartSpeed;
 
     public Vector3 spawnPosition;
     
@@ -34,7 +35,8 @@ public class PlayerScript : MonoBehaviour
     {
         spawnPosition = transform.position;
         baseSpeed = moveSpeed;
-        sprintSpeed = baseSpeed + 3f;
+        restartSpeed = baseSpeed;
+        sprintSpeed = moveSpeed + 3f;
     }
 
     // Update is called once per frame
@@ -91,7 +93,10 @@ public class PlayerScript : MonoBehaviour
         }
         else if (exhausted == false)
         {
-            moveSpeed = baseSpeed;
+           
+            moveSpeed = baseSpeed; 
+            
+            
         }
         else if (exhausted == true) //not sprinting but you are exhausted you need to wait some time to sprint again
         {
@@ -109,6 +114,7 @@ public class PlayerScript : MonoBehaviour
         //when you sprinted you start relaxing and when you are relaxed your sprint starts refuling
         if (Input.GetKey(KeyCode.LeftShift) == false && exhausted == false && pressed == true) 
         {
+            
             relax += 1 * Time.deltaTime;
             if (relax >= 1.5)
             {
@@ -143,6 +149,7 @@ public class PlayerScript : MonoBehaviour
         if (speedcoroutine != null)
         {
             StopCoroutine(speedcoroutine);
+            moveSpeed = restartSpeed;
             speedcoroutine = null;
         }
         speedcoroutine = StartCoroutine(SpeedBoostRoutine(boostAmount, duration));
@@ -153,6 +160,7 @@ public class PlayerScript : MonoBehaviour
         if (reversedcoroutine != null)
         {
             StopCoroutine(reversedcoroutine);
+            reversed = false;
             reversedcoroutine = null;
         }
         reversedcoroutine = StartCoroutine(ReversedControlRoutine(duration));
@@ -160,9 +168,11 @@ public class PlayerScript : MonoBehaviour
 
     IEnumerator SpeedBoostRoutine(float boostAmount, float duration)
     {
-        moveSpeed = baseSpeed + boostAmount;
+        baseSpeed += boostAmount;
+        
         yield return new WaitForSeconds(duration);
-        moveSpeed = baseSpeed;
+        baseSpeed -= boostAmount;
+        
         speedcoroutine = null;
     }
 

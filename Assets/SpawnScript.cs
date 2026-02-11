@@ -127,7 +127,7 @@ public class SpawnScript : MonoBehaviour
     GameObject PickEgg()
     {
         float roll = Random.Range(0f, 100f); 
-        if (roll < 70f)
+        if (roll < 0f)
         {
             return egg;
         }

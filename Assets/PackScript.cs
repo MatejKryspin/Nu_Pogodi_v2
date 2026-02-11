@@ -1,3 +1,4 @@
+using System;
 using System.Reflection.Emit;
 using UnityEngine;
 
@@ -32,7 +33,7 @@ public class PackScript : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("SpeedEgg"))
         {
-            
+            Debug.Log("Hrac sebral speed vajce");
             player.StartSpeedEffect(5f, 10f); //boost amount, duration
             numberOfEggs++;
             logic.AddMoneyOnPickup("speed");

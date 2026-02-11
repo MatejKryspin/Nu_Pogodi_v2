@@ -256,6 +256,8 @@ MonoBehaviour:
   dayIsEnding: 0
   days: {fileID: 1533427163}
   UI: {fileID: 664085062}
+  eggValues: 
+  pos: 0
   roundTime: 0
 --- !u!4 &127043862
 Transform:
@@ -2345,20 +2347,26 @@ MonoBehaviour:
   egg: {fileID: 6069713301363901919, guid: 53aecfc75272ed64ea4e80d801b5e434, type: 3}
   warning: {fileID: 3619626154725721886, guid: b053b0b006587ed4fb7b4570ae8bcbce, type: 3}
   specialEggs:
-  - {fileID: 3001797125663898236, guid: bc949298d4ad97b4ea2d2238e232ca6f, type: 3}
-  - {fileID: 102284094289184604, guid: ac6819af6c7063e41a93f4e8ff23cc80, type: 3}
-  - {fileID: 1950168322013362840, guid: 2f509162a19c27141b1c7f5f2025847f, type: 3}
+  - {fileID: 7208444600821669227, guid: ac6819af6c7063e41a93f4e8ff23cc80, type: 3}
+  - {fileID: 874388857596617577, guid: bc949298d4ad97b4ea2d2238e232ca6f, type: 3}
+  - {fileID: 8908607844677422357, guid: 2f509162a19c27141b1c7f5f2025847f, type: 3}
   spawnTime: 0
   maxSpawn: 5
   canSpawn: 1
   spawnPicked: 0
+  confused: 0
+  confusedIndex: 0
   index: 0
   spawnPoints:
-  - {fileID: 376410160}
-  - {fileID: 392945717}
   - {fileID: 729512542}
   - {fileID: 1913523229}
-  warningPoints: []
+  - {fileID: 376410160}
+  - {fileID: 392945717}
+  warningPoints:
+  - {fileID: 729512542}
+  - {fileID: 1913523229}
+  - {fileID: 376410160}
+  - {fileID: 392945717}
 --- !u!4 &889941435
 Transform:
   m_ObjectHideFlags: 0
@@ -3224,6 +3232,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   logic: {fileID: 127043861}
+  spawn: {fileID: 889941434}
+  player: {fileID: 2064073163}
   numberOfEggs: 0
 --- !u!61 &1702675785
 BoxCollider2D:
@@ -3781,12 +3791,15 @@ MonoBehaviour:
   grab: {fileID: 0}
   jumpStrength: 11.5
   moveSpeed: 4
+  sprintSpeed: 0
+  baseSpeed: 0
   timer: 0
   interval: 2
   relax: 0
   maxSprint: 4
   exhausted: 0
   pressed: 0
+  reversed: 0
   spawnPosition: {x: 0, y: 0, z: 0}
 --- !u!61 &2064073164
 BoxCollider2D:
