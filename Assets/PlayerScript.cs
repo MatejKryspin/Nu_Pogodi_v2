@@ -188,3 +188,12 @@ public class PlayerScript : MonoBehaviour
     }
 }
 
+
+/////// prosim priste az tady budes  prosim prosim prosim prosiiiiiiiiiim  
+/// udelej ten timer jak dlouho trva ten effekt plsky
+/// taky udelej sprite pro ten sellpoint
+/// udelej sprite pro random vajce 
+/// pridej nejaky novy a pridej dalsi levely
+/// 
+/// 
+/// pak jeste potrebuju shop ale to je asi na pozdeji :sob:
