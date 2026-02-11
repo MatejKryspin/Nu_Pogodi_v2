@@ -24,7 +24,9 @@ public class PlayerScript : MonoBehaviour
     public bool exhausted;
     public bool pressed;
     public bool reversed;
+    public bool speeding;
     public float restartSpeed;
+    
 
     public Vector3 spawnPosition;
     
@@ -79,7 +81,7 @@ public class PlayerScript : MonoBehaviour
         }
 
         //pressed: resets relax, relax is when you are exhausted when its resets, timer is for how long you can sprint
-        if (Input.GetKey(KeyCode.LeftShift) == true && exhausted == false)
+        if (Input.GetKey(KeyCode.LeftShift) == true && exhausted == false && speeding == false)
         {
             pressed = true;
             moveSpeed = sprintSpeed;
@@ -149,7 +151,8 @@ public class PlayerScript : MonoBehaviour
         if (speedcoroutine != null)
         {
             StopCoroutine(speedcoroutine);
-            moveSpeed = restartSpeed;
+            baseSpeed = restartSpeed;
+            speeding = false;
             speedcoroutine = null;
         }
         speedcoroutine = StartCoroutine(SpeedBoostRoutine(boostAmount, duration));
@@ -169,10 +172,10 @@ public class PlayerScript : MonoBehaviour
     IEnumerator SpeedBoostRoutine(float boostAmount, float duration)
     {
         baseSpeed += boostAmount;
-        
+        speeding = true;
         yield return new WaitForSeconds(duration);
         baseSpeed -= boostAmount;
-        
+        speeding = false;
         speedcoroutine = null;
     }
 
