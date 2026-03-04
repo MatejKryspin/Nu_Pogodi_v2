@@ -4,9 +4,12 @@ using UnityEngine.UI;
 public class StatusEffectUI : MonoBehaviour
 {
     
-
+    // Obrazek s cooldownem - fillAmount ukazuje jak dlouho trva efekt
     public Image cooldownImage;
+    
+    // Text ktery ma vypisovat nazev efektu a zbyvajici cas
     public Text timerText;
+    
     public float duration;
     public bool effectStarts = false;
     public float timeLeft;
@@ -36,6 +39,21 @@ public class StatusEffectUI : MonoBehaviour
 
     public void StartUIEffectDuration(float effectDuration, string effectType)
     {
+        // Zkontroluj jestli je timerText prirazen v editoru
+        if (timerText == null)
+        {
+            Debug.LogError("StatusEffectUI: timerText neni prirazen! Jdi do EffectBar.prefab a priradi Text element do pole timerText");
+            return;
+        }
+        
+        // Zkontroluj jestli je cooldownImage prirazen v editoru
+        if (cooldownImage == null)
+        {
+            Debug.LogError("StatusEffectUI: cooldownImage neni prirazen! Jdi do EffectBar.prefab a priradi Image element do pole cooldownImage");
+            return;
+        }
+        
+        // Nastavi text na nazev efektu
         timerText.text = $"{effectType}";
         timeLeft = effectDuration;
         duration = effectDuration;
