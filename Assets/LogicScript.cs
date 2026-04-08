@@ -15,6 +15,9 @@ public class LogicScript : MonoBehaviour
     public int playerScore;
     public SpawnScript spawn;
     public DayTransition dTrans;
+    public DaySystem dSys;
+    public PlayerScript player;
+    public EndScreenScript endScreenPanel;
     public Text scoreText;
     public Text pointsText;
     public Text moneyText;
@@ -22,9 +25,8 @@ public class LogicScript : MonoBehaviour
     public int maxQuota = 10; //10 je pro zatim aby priste jsem to mohl zvednout
     public bool dayIsEnding = false;
 
-
-    public DaySystem days;
-
+    public Sprite youhavewon;
+    public Sprite youhavelose;
     public GameObject UI;
     public List<int> eggValues = new List<int>(); //tady budu uchovavat hodnoty vajec ktere byly sebrany a pak az je prodam tak se z toho arraye bude pricitat k penezum
     public int pos = 0;
@@ -35,6 +37,10 @@ public class LogicScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if (endScreenPanel == null)
+        {
+            endScreenPanel = FindAnyObjectByType<EndScreenScript>();
+        }
         moneyText.text = $"{playerMoney}";
         scoreText.text = $"{playerScore}/{maxQuota}";
         UI.SetActive(true);
@@ -78,9 +84,9 @@ public class LogicScript : MonoBehaviour
     public void LoseMoneyOnDrop()
     {
         playerMoney -= 5;
-        if (playerMoney < 0)
+        if (playerMoney < -5)
         {
-            playerMoney = 0;
+            EndScreen("Prohral jsi!", youhavelose);
         }
         moneyText.text = $"{playerMoney}";
     }
@@ -141,6 +147,20 @@ public class LogicScript : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+    }
+
+    public void EndScreen(string text, Sprite sprite)
+    {
+        Time.timeScale = 0f;
+        Debug.Log("Time has stopped");
+        spawn.StopSpawning();
+        Debug.Log("Spawning stopped");
+        player.TeleportToSpawn();
+        Debug.Log("Player teleported to spawn");
+        //endScreenPanel.SetActive(true);
+        endScreenPanel.ShowEndScreen(text, sprite);
+        Debug.Log("Showing end screen");
 
     }
 }

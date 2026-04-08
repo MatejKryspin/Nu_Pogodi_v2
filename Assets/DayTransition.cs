@@ -1,11 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System;
 
 public class DayTransition : MonoBehaviour
 {
     public GameObject dayPanel;
-    public GameObject endScreenPanel;
     public Text countdownText;
     public Text endScreenText;
 
@@ -18,7 +18,7 @@ public class DayTransition : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        endScreenPanel.SetActive(false);
+        //endScreenPanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -58,12 +58,5 @@ public class DayTransition : MonoBehaviour
 
     }
 
-    public void EndScreen()
-    {
-        Time.timeScale = 0f;
-        spawn.StopSpawning();
-        player.TeleportToSpawn();
-        endScreenPanel.SetActive(true);
 
-    }
 }
