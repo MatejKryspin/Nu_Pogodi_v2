@@ -2959,7 +2959,7 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 50
-  m_ChildAlignment: 7
+  m_ChildAlignment: 4
   m_Spacing: 10
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
@@ -3363,6 +3363,7 @@ MonoBehaviour:
   spawn: {fileID: 889941434}
   player: {fileID: 2064073163}
   effectBarPrefab: {fileID: 5562557738521087450, guid: 2b938d6577c401647a6d3a75494456d8, type: 3}
+  effectContainer: {fileID: 1364605297}
   numberOfEggs: 0
 --- !u!61 &1702675785
 BoxCollider2D:

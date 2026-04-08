@@ -42,14 +42,14 @@ public class StatusEffectUI : MonoBehaviour
         // Zkontroluj jestli je timerText prirazen v editoru
         if (timerText == null)
         {
-            Debug.LogError("StatusEffectUI: timerText neni prirazen! Jdi do EffectBar.prefab a priradi Text element do pole timerText");
+            Debug.LogError("StatusEffectUI: timerText neni prirazen!");
             return;
         }
         
         // Zkontroluj jestli je cooldownImage prirazen v editoru
         if (cooldownImage == null)
         {
-            Debug.LogError("StatusEffectUI: cooldownImage neni prirazen! Jdi do EffectBar.prefab a priradi Image element do pole cooldownImage");
+            Debug.LogError("StatusEffectUI: cooldownImage neni prirazen!");
             return;
         }
         

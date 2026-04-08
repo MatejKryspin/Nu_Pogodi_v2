@@ -60,6 +60,7 @@ public class PackScript : MonoBehaviour
             StatusEffectUI effectUI = effectBar.GetComponent<StatusEffectUI>();
             if (effectUI != null)
             {
+                Debug.Log("Effect Started");
                 effectUI.StartUIEffectDuration(duration, effectName);
             }
         }
