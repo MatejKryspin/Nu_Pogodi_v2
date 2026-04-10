@@ -59,8 +59,7 @@ public class DaySystem : MonoBehaviour
         if (currentDay >= days.Length)
         {
             Debug.Log("Byl dosazen konec hry!");
-            //dTrans.EndScreen("Vyhral jsi!", "youhavewon");
-            logic.EndScreen("Vyhral jsi!", logic.youhavewon);
+            logic.EndScreen(true);
             return;
         }
         

@@ -4,13 +4,18 @@ using UnityEngine.UI;
 public class EndScreenScript : MonoBehaviour
 {
 
-    public Image shownImage;
-    public Text shownText;
-
+    public Image ImageWin;
+    public Image ImageLose;
+    public Text TextWin;
+    public Text TextLose;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         gameObject.SetActive(false);
+            ImageWin.gameObject.SetActive(false);
+            TextWin.gameObject.SetActive(false);
+            ImageLose.gameObject.SetActive(false);
+            TextLose.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -20,11 +25,20 @@ public class EndScreenScript : MonoBehaviour
     }
 
 
-    public void ShowEndScreen(string text, Sprite sprite)
+    public void ShowEndScreen(bool win)
     {
         gameObject.SetActive(true);
-        shownText.text = text;
-        shownImage.sprite = sprite;
+        if (win)
+        {
+            ImageWin.gameObject.SetActive(true);
+            TextWin.gameObject.SetActive(true);
+        }
+        else
+        {
+            ImageLose.gameObject.SetActive(true);
+            TextLose.gameObject.SetActive(true);
+        }
+
     }
     
 }
