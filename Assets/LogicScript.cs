@@ -139,7 +139,7 @@ public class LogicScript : MonoBehaviour
 
     public void restartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadSceneAsync(1);
         Time.timeScale = 1f;
     }
 
