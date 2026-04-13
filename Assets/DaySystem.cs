@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [System.Serializable] //zajisti ze v editoru je to videt jako seznam
 public class DayData //data pro kazdy den neboli objekt a jeho atributy
@@ -59,7 +60,7 @@ public class DaySystem : MonoBehaviour
         if (currentDay >= days.Length)
         {
             Debug.Log("Byl dosazen konec hry!");
-            logic.EndScreen(true);
+            SceneManager.LoadSceneAsync(3);
             return;
         }
         

@@ -17,7 +17,7 @@ public class LogicScript : MonoBehaviour
     public DayTransition dTrans;
     public DaySystem dSys;
     public PlayerScript player;
-    public EndScreenScript endScreenPanel;
+    //public EndScreenScript endScreenPanel;
     public Text scoreText;
     public Text pointsText;
     public Text moneyText;
@@ -80,7 +80,7 @@ public class LogicScript : MonoBehaviour
         playerMoney -= 5;
         if (playerMoney < -5)
         {
-            EndScreen(false);
+            SceneManager.LoadSceneAsync(2);
         }
         moneyText.text = $"{playerMoney}";
     }
@@ -135,25 +135,25 @@ public class LogicScript : MonoBehaviour
         scoreText.text = $"{playerScore}/{maxQuota}";
         
         dayIsEnding = false;
-    }
+    } 
 
-    public void restartGame()
-    {
-        SceneManager.LoadSceneAsync(1);
-        Time.timeScale = 1f;
-    }
+    // public void restartGame()
+    // {
+    //     SceneManager.LoadSceneAsync(1);
+    //     Time.timeScale = 1f;
+    // }
 
-    public void EndScreen(bool win)
-    {
-        Time.timeScale = 0f;
+    // public void EndScreen(bool win)
+    // {
+    //     Time.timeScale = 0f;
        
-        spawn.StopSpawning();
+    //     spawn.StopSpawning();
         
-        player.TeleportToSpawn();
+    //     player.TeleportToSpawn();
         
-        //endScreenPanel.SetActive(true);
-        endScreenPanel.ShowEndScreen(win);
-        Debug.Log("Showing end screen");
+    //     //endScreenPanel.SetActive(true);
+    //     //endScreenPanel.ShowEndScreen(win);
+    //     Debug.Log("Showing end screen");
 
-    }
+    // }
 }

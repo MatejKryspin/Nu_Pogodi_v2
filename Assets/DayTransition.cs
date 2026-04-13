@@ -18,7 +18,7 @@ public class DayTransition : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //endScreenPanel.SetActive(false);
+        dayPanel.SetActive(false);
     }
 
     // Update is called once per frame

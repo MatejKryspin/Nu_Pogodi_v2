@@ -1,5 +1,6 @@
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SellScript : MonoBehaviour
 {
@@ -7,17 +8,21 @@ public class SellScript : MonoBehaviour
 
     public LogicScript logic;
     public PackScript pack;
+    public Image sellProgress;
     public float timeToSell = 1.5f; 
     public float saveTime;
     public float multyTime = 1f;
     
     public bool isSelling;
+    public float maxBar;
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         saveTime = timeToSell;
+        sellProgress.fillAmount = 0f;
+        maxBar = 1f;
        
     }
 
@@ -28,8 +33,9 @@ public class SellScript : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.E) == true && pack.numberOfEggs != 0)
             {
-            
+                
                 timeToSell -= multyTime * Time.deltaTime;
+                sellProgress.fillAmount = maxBar - (timeToSell * (1f / saveTime));
                 if (timeToSell <= 0)
                 {
                     pack.EggSelled();
@@ -37,6 +43,10 @@ public class SellScript : MonoBehaviour
                     logic.AddScore();
                     timeToSell = saveTime;
                 }
+            }
+            else
+            {
+                sellProgress.fillAmount = 0f;
             }
         }
     }
