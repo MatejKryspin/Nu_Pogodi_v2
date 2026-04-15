@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class PlayerScript : MonoBehaviour
     public GrabZone grab;
     public Coroutine speedcoroutine;
     public Coroutine reversedcoroutine;
+    public Image sprintBar;
 
 
     public float jumpStrength = 2;
@@ -26,7 +28,10 @@ public class PlayerScript : MonoBehaviour
     public bool reversed;
     public bool speeding;
     public float restartSpeed;
-    
+
+    public float fadeLimit = 1.5f;
+    public float fading = 0;
+    public bool sprinted = false;
 
     public Vector3 spawnPosition;
     
@@ -39,6 +44,7 @@ public class PlayerScript : MonoBehaviour
         baseSpeed = moveSpeed;
         restartSpeed = baseSpeed;
         sprintSpeed = moveSpeed + 3f;
+        sprintBar.enabled = false;
     }
 
     // Update is called once per frame
@@ -138,6 +144,23 @@ public class PlayerScript : MonoBehaviour
                 myRigidbody.linearVelocity = Vector2.up * jumpStrength;
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) == true) 
+        {
+            fading = 0;
+            sprintBar.enabled = true;
+            sprinted = true;
+
+        }
+        if (Input.GetKey(KeyCode.LeftShift) == false && sprinted == true)
+        {
+            fading += Time.deltaTime;
+            if (fading >= fadeLimit) {
+                sprintBar.enabled = false;
+                sprinted = false;
+            }
+        }
+
     }
 
 
