@@ -16,14 +16,14 @@ public class PlayerScript : MonoBehaviour
 
 
     public float jumpStrength = 2;
-    public float moveSpeed = 4f;
-    public float sprintSpeed;
-    public float baseSpeed;
-    public float timer = 0;
-    public float interval = 2;
-    public float relax = 0;
-    public float maxSprint = 4;
-    public bool exhausted;
+    public float moveSpeed = 4f; //normal speed without any effects
+    public float sprintSpeed; //speed when you are sprinting
+    public float baseSpeed; //normal speed without any effects
+    public float timer = 0; //how long you have been sprinting
+    public float interval = 2; //how fast the sprint timer goes up and down
+    public float relax = 0; //when you are sprinting you are not relaxed but when you stop sprinting you start relaxing and when you are relaxed your sprint starts refilling
+    public float maxSprint = 4; //when you reach max sprint you are exhausted and you need to wait some time to be able to sprint again, also when you are exhausted your speed is reduced by 2
+    public bool exhausted; //when you are exhausted you cant sprint and your speed is reduced by 2 you need to wait some time to be able to sprint again
     public bool pressed;
     public bool reversed;
     public bool speeding;
@@ -32,6 +32,8 @@ public class PlayerScript : MonoBehaviour
     public float fadeLimit = 1.5f;
     public float fading = 0;
     public bool sprinted = false;
+    public float sprintBarWidth;
+    public bool fullSprintBar;
 
     public Vector3 spawnPosition;
     
@@ -45,6 +47,7 @@ public class PlayerScript : MonoBehaviour
         restartSpeed = baseSpeed;
         sprintSpeed = moveSpeed + 3f;
         sprintBar.enabled = false;
+        fullSprintBar = true;
     }
 
     // Update is called once per frame
@@ -147,18 +150,27 @@ public class PlayerScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftShift) == true) 
         {
+            fullSprintBar = false;
             fading = 0;
             sprintBar.enabled = true;
             sprinted = true;
 
         }
-        if (Input.GetKey(KeyCode.LeftShift) == false && sprinted == true)
+        if (Input.GetKey(KeyCode.LeftShift) == false && sprinted == true && fullSprintBar == true)
         {
             fading += Time.deltaTime;
             if (fading >= fadeLimit) {
                 sprintBar.enabled = false;
                 sprinted = false;
             }
+        }
+        if (timer > 0)
+        {
+            sprintBar.fillAmount = 1f - (timer * (1f / maxSprint));
+        }
+        else
+        {
+            sprintBar.fillAmount = 0f;
         }
 
     }
