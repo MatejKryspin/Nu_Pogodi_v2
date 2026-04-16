@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class DayData //data pro kazdy den neboli objekt a jeho atributy
 {
     public int quota; //deni quota
-    public int packSize; //velikost sacku
+    public int minMoney; //minimalni penize pro start dne
     public int time; //round time
     public float spawnInterval; //spawn vajec
     public float sellInterval; //rychlost prodeje
@@ -27,6 +27,7 @@ public class DaySystem : MonoBehaviour
     void Start()
     {
         StartDay(currentDay);
+        
     }
 
     // Update is called once per frame
