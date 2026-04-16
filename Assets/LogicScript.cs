@@ -38,7 +38,7 @@ public class LogicScript : MonoBehaviour
     void Start()
     {
         moneyText.text = $"{playerMoney}";
-        minMoneyText.text = $"To get: {dSys.days[dSys.currentDay].minMoney}";
+        minMoneyText.text = $"Needed Money: {dSys.days[dSys.currentDay].minMoney}";
         scoreText.text = $"{playerScore}/{maxQuota}";
         UI.SetActive(true);
         
@@ -142,6 +142,7 @@ public class LogicScript : MonoBehaviour
     {
         playerScore = 0; 
         scoreText.text = $"{playerScore}/{maxQuota}";
+        minMoneyText.text = $"Needed Money: {dSys.days[dSys.currentDay].minMoney}";
         
         dayIsEnding = false;
     } 
