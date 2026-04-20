@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 
 
+
 public class LogicScript : MonoBehaviour
 {
 
@@ -21,6 +22,7 @@ public class LogicScript : MonoBehaviour
     public Text scoreText;
     public Text pointsText;
     public Text moneyText;
+    public Text minMoneyText;
     public int playerMoney = 0;
     public int maxQuota = 10; //10 je pro zatim aby priste jsem to mohl zvednout
     public bool dayIsEnding = false;
@@ -36,6 +38,7 @@ public class LogicScript : MonoBehaviour
     void Start()
     {
         moneyText.text = $"{playerMoney}";
+        minMoneyText.text = $"Needed Money: {dSys.days[dSys.currentDay].minMoney}";
         scoreText.text = $"{playerScore}/{maxQuota}";
         UI.SetActive(true);
         
@@ -51,6 +54,12 @@ public class LogicScript : MonoBehaviour
 
         if (playerScore >= maxQuota && !dayIsEnding)
         {
+            if (playerMoney < dSys.days[dSys.currentDay].minMoney - 10)
+            {
+                //endScreenPanel.ShowEndScreen(false);
+                SceneManager.LoadSceneAsync(2);
+            }
+
             
             dTrans.StartDayTransition();
             dayIsEnding = true;
@@ -78,10 +87,10 @@ public class LogicScript : MonoBehaviour
     public void LoseMoneyOnDrop()
     {
         playerMoney -= 5;
-        if (playerMoney < -5)
-        {
-            SceneManager.LoadSceneAsync(2);
-        }
+        // if (playerMoney < -5)
+        // {
+        //     SceneManager.LoadSceneAsync(2);
+        // }
         moneyText.text = $"{playerMoney}";
     }
 
@@ -133,6 +142,7 @@ public class LogicScript : MonoBehaviour
     {
         playerScore = 0; 
         scoreText.text = $"{playerScore}/{maxQuota}";
+        minMoneyText.text = $"Needed Money: {dSys.days[dSys.currentDay].minMoney}";
         
         dayIsEnding = false;
     } 
