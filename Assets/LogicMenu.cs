@@ -12,4 +12,9 @@ public class LogicMenu : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void Tutorial()
+    {
+        SceneManager.LoadSceneAsync(4);
+    }
 }

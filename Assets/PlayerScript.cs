@@ -13,6 +13,7 @@ public class PlayerScript : MonoBehaviour
     public Coroutine speedcoroutine;
     public Coroutine reversedcoroutine;
     public Image sprintBar;
+    public Animator animator;
 
 
     public float jumpStrength = 2;
@@ -36,6 +37,8 @@ public class PlayerScript : MonoBehaviour
     public bool fullSprintBar;
 
     public Vector3 spawnPosition;
+
+    public float movement = 0f;
     
 
 
@@ -48,12 +51,18 @@ public class PlayerScript : MonoBehaviour
         sprintSpeed = moveSpeed + 3f;
         sprintBar.enabled = false;
         fullSprintBar = true;
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
         float move = Input.GetAxisRaw("Horizontal"); //changes player model looking in direction where user is moving
+
+        if (reversed)
+        {
+            move = -move;
+        }
 
         if (move > 0)
         {
@@ -67,6 +76,7 @@ public class PlayerScript : MonoBehaviour
         //input system
         if (Input.GetKey(KeyCode.D) == true)
         {
+            movement = 1f;
             if (reversed)
             {
                 transform.position += Vector3.left * moveSpeed * Time.deltaTime;
@@ -79,6 +89,7 @@ public class PlayerScript : MonoBehaviour
 
         if (Input.GetKey(KeyCode.A) == true)
         {
+            movement = 1f;
             if (reversed)
             {
                 transform.position += Vector3.right * moveSpeed * Time.deltaTime;
@@ -87,6 +98,11 @@ public class PlayerScript : MonoBehaviour
             {
                 transform.position += Vector3.left * moveSpeed * Time.deltaTime;
             }
+        }
+
+        if (Input.GetKey(KeyCode.D) == false && Input.GetKey(KeyCode.A) == false)
+        {
+            movement = 0f;
         }
 
         //pressed: resets relax, relax is when you are exhausted when its resets, timer is for how long you can sprint
@@ -172,6 +188,8 @@ public class PlayerScript : MonoBehaviour
         {
             sprintBar.fillAmount = 0f;
         }
+
+        animator.SetFloat("Speed", Mathf.Abs(movement));
 
     }
 
