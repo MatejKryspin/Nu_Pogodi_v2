@@ -141,6 +141,7 @@ public class LogicScript : MonoBehaviour
     public void NewDay()
     {
         playerScore = 0; 
+        moneyText.text = $"{playerMoney}";
         scoreText.text = $"{playerScore}/{maxQuota}";
         minMoneyText.text = $"Needed Money: {dSys.days[dSys.currentDay].minMoney}";
         
