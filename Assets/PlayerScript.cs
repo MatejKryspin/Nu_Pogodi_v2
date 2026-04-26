@@ -14,6 +14,7 @@ public class PlayerScript : MonoBehaviour
     public Coroutine reversedcoroutine;
     public Image sprintBar;
     public Animator animator;
+    public SpriteRenderer spriteRenderer;
 
 
     public float jumpStrength = 2;
@@ -39,6 +40,7 @@ public class PlayerScript : MonoBehaviour
     public Vector3 spawnPosition;
 
     public float movement = 0f;
+    public int inZone = 0;
     
 
 
@@ -189,7 +191,9 @@ public class PlayerScript : MonoBehaviour
             sprintBar.fillAmount = 0f;
         }
 
-        animator.SetFloat("Speed", Mathf.Abs(movement));
+
+        animator.SetFloat("Speed", movement);
+        animator.SetInteger("inZone", inZone);
 
     }
 
