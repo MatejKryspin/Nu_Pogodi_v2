@@ -37,8 +37,8 @@ public class LogicScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        moneyText.text = $"{playerMoney}";
-        minMoneyText.text = $"Needed Money: {dSys.days[dSys.currentDay].minMoney}";
+        moneyText.text = $"{playerMoney}$";
+        minMoneyText.text = $"Needed Money: {dSys.days[dSys.currentDay].minMoney}$";
         scoreText.text = $"{playerScore}/{maxQuota}";
         UI.SetActive(true);
         
@@ -54,13 +54,6 @@ public class LogicScript : MonoBehaviour
 
         if (playerScore >= maxQuota && !dayIsEnding)
         {
-            if (playerMoney < dSys.days[dSys.currentDay].minMoney - 10)
-            {
-                //endScreenPanel.ShowEndScreen(false);
-                SceneManager.LoadSceneAsync(2);
-            }
-
-            
             dTrans.StartDayTransition();
             dayIsEnding = true;
 
@@ -113,7 +106,7 @@ public class LogicScript : MonoBehaviour
         else if (type == "speed")
         {
            //playerMoney += 1; 
-           eggValues.Add(1);
+           eggValues.Add(3);
         }
         else if (type == "reversed")
         {
@@ -148,23 +141,13 @@ public class LogicScript : MonoBehaviour
         dayIsEnding = false;
     } 
 
-    // public void restartGame()
-    // {
-    //     SceneManager.LoadSceneAsync(1);
-    //     Time.timeScale = 1f;
-    // }
+    public void ExitToMenu()
+    {
+        SceneManager.LoadSceneAsync(0);
+    }
 
-    // public void EndScreen(bool win)
-    // {
-    //     Time.timeScale = 0f;
-       
-    //     spawn.StopSpawning();
-        
-    //     player.TeleportToSpawn();
-        
-    //     //endScreenPanel.SetActive(true);
-    //     //endScreenPanel.ShowEndScreen(win);
-    //     Debug.Log("Showing end screen");
-
-    // }
+    public void RestartGame()
+    {
+        SceneManager.LoadSceneAsync(1);
+    }
 }

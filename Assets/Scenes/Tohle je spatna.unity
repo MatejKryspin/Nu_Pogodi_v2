@@ -151,10 +151,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   logic: {fileID: 127043861}
   pack: {fileID: 1702675784}
+  sellProgress: {fileID: 0}
   timeToSell: 0.7
   saveTime: 0
   multyTime: 1
   isSelling: 0
+  maxBar: 0
 --- !u!4 &79320524
 Transform:
   m_ObjectHideFlags: 0
@@ -248,13 +250,15 @@ MonoBehaviour:
   playerScore: 0
   spawn: {fileID: 889941434}
   dTrans: {fileID: 1177002751}
+  dSys: {fileID: 0}
+  player: {fileID: 0}
   scoreText: {fileID: 152771941}
   pointsText: {fileID: 367796551}
   moneyText: {fileID: 1252847342}
+  minMoneyText: {fileID: 0}
   playerMoney: 0
   maxQuota: 10
   dayIsEnding: 0
-  days: {fileID: 1533427163}
   UI: {fileID: 664085062}
   eggValues: 
   pos: 0
@@ -2633,7 +2637,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dayPanel: {fileID: 1342518227}
-  endScreenPanel: {fileID: 325571944}
   countdownText: {fileID: 419686443}
   endScreenText: {fileID: 151208099}
   daySystem: {fileID: 1533427163}
@@ -3220,17 +3223,17 @@ MonoBehaviour:
   sell: {fileID: 79320523}
   days:
   - quota: 10
-    packSize: 5
+    minMoney: 0
     time: 20
     spawnInterval: 5
     sellInterval: 1
   - quota: 12
-    packSize: 5
+    minMoney: 0
     time: 24
     spawnInterval: 4.5
     sellInterval: 1.2
   - quota: 14
-    packSize: 7
+    minMoney: 0
     time: 26
     spawnInterval: 4
     sellInterval: 1.4
@@ -3919,6 +3922,9 @@ MonoBehaviour:
   myRigidbody: {fileID: 2064073167}
   jump: {fileID: 317456447}
   grab: {fileID: 0}
+  sprintBar: {fileID: 0}
+  animator: {fileID: 0}
+  spriteRenderer: {fileID: 0}
   jumpStrength: 11.5
   moveSpeed: 4
   sprintSpeed: 0
@@ -3932,7 +3938,14 @@ MonoBehaviour:
   reversed: 0
   speeding: 0
   restartSpeed: 0
+  fadeLimit: 1.5
+  fading: 0
+  sprinted: 0
+  sprintBarWidth: 0
+  fullSprintBar: 0
   spawnPosition: {x: 0, y: 0, z: 0}
+  movement: 0
+  inZone: 0
 --- !u!61 &2064073164
 BoxCollider2D:
   m_ObjectHideFlags: 0

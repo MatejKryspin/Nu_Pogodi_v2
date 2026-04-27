@@ -17,4 +17,9 @@ public class LogicMenu : MonoBehaviour
     {
         SceneManager.LoadSceneAsync(4);
     }
+
+    public void BackToMenu()
+    {
+        SceneManager.LoadSceneAsync(0);
+    }
 }

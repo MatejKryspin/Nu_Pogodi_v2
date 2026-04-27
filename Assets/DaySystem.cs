@@ -59,6 +59,7 @@ public class DaySystem : MonoBehaviour
 
 
     }
+
     public void CompleteDay()
     {
         currentDay += 1; 
@@ -66,8 +67,21 @@ public class DaySystem : MonoBehaviour
         if (currentDay >= days.Length)
         {
             Debug.Log("Byl dosazen konec hry!");
-            SceneManager.LoadSceneAsync(3);
-            return;
+            
+            if (logic.playerMoney <= 0)
+            {
+                Debug.Log("Hrac prohral!");
+                SceneManager.LoadSceneAsync(2);
+                return;
+            }
+            else
+            {
+                Debug.Log("Hrac vyhral!");
+                SceneManager.LoadSceneAsync(3);
+                return;
+            }
+            
+
         }
         
         StartDay(currentDay);
