@@ -61,7 +61,6 @@ public class DaySystem : MonoBehaviour
 
     public void CompleteDay()
     {
-        currentDay += 1; 
 
         if (currentDay >= days.Length)
         {
@@ -79,10 +78,9 @@ public class DaySystem : MonoBehaviour
                 SceneManager.LoadSceneAsync(3);
                 return;
             }
-            
-
         }
         
+        currentDay += 1; 
         StartDay(currentDay);
 
     }
