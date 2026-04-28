@@ -38,13 +38,9 @@ public class DaySystem : MonoBehaviour
     public void StartDay(int dayIndex)
     {
         DayData day = days[dayIndex]; //jeden den s atributami z DayData se nastavi na hodnoty vybrane z tabulky days s nejakym indexem
-        DayData prevday = days[dayIndex - 1];
+
         logic.maxQuota = day.quota; 
         logic.roundTime = day.time; //stale nefunguje a je to na rozsireni
-        if (dayIndex > 0)
-        {
-            logic.playerMoney -= prevday.minMoney;
-        }
 
         
 
@@ -61,6 +57,10 @@ public class DaySystem : MonoBehaviour
 
     public void CompleteDay()
     {
+        DayData endingday = days[currentDay];
+        
+        logic.playerMoney -= endingday.minMoney;
+
 
         if (currentDay >= days.Length)
         {
