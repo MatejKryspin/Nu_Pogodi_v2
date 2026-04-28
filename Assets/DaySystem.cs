@@ -58,11 +58,11 @@ public class DaySystem : MonoBehaviour
     public void CompleteDay()
     {
         DayData endingday = days[currentDay];
-        
+
         logic.playerMoney -= endingday.minMoney;
 
 
-        if (currentDay >= days.Length)
+        if (currentDay + 1 >= days.Length)
         {
             Debug.Log("Byl dosazen konec hry!");
             
