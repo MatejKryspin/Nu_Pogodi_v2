@@ -1,9 +1,4 @@
-using System;
-using JetBrains.Annotations;
 using UnityEngine;
-using System.Linq;
-using UnityEngine.Rendering;
-using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
